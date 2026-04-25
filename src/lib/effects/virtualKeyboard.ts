@@ -1,6 +1,6 @@
 import { getConfig } from './config';
 
-const ATTR = 'data-cc-vkb';
+const ATTR = 'data-a11y-panel-vkb';
 
 const ROWS: string[][] = [
   ['`','1','2','3','4','5','6','7','8','9','0','-','=','⌫'],
@@ -24,7 +24,7 @@ function keyLabel(k: string): string {
 
 function dispatchKey(k: string): void {
   const target = document.activeElement as HTMLElement;
-  if (!target || target.closest('[data-cc-vkb]')) return;
+  if (!target || target.closest('[data-a11y-panel-vkb]')) return;
 
   const mapped = SPECIAL[k] ?? (shiftOn || capsOn ? k.toUpperCase() : k);
 
@@ -91,7 +91,7 @@ export function show(): void {
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   });
   closeBtn.addEventListener('click', () => {
-    document.dispatchEvent(new CustomEvent('cc-vkb-close'));
+    document.dispatchEvent(new CustomEvent('a11y-panel-vkb-close'));
   });
 
   headerRow.appendChild(pill);

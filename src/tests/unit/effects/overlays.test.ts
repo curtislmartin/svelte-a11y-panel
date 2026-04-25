@@ -7,7 +7,9 @@ function state(overrides = {}) {
 }
 
 describe('overlays.sync', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    const { cleanup } = await import('$lib/effects/overlays');
+    cleanup();
     document.body.innerHTML = '';
     setConfig({});
   });
@@ -15,7 +17,7 @@ describe('overlays.sync', () => {
   it('readingGuide: creates overlay element on enable', async () => {
     const { sync, cleanup } = await import('$lib/effects/overlays');
     sync(state({ readingGuide: true }));
-    expect(document.body.querySelector('[data-cc-a11y-overlay="reading-guide"]')).toBeTruthy();
+    expect(document.body.querySelector('[data-a11y-panel-overlay="reading-guide"]')).toBeTruthy();
     cleanup();
   });
 
@@ -23,15 +25,15 @@ describe('overlays.sync', () => {
     const { sync, cleanup } = await import('$lib/effects/overlays');
     sync(state({ readingGuide: true }));
     sync(state({ readingGuide: false }));
-    expect(document.body.querySelector('[data-cc-a11y-overlay="reading-guide"]')).toBeNull();
+    expect(document.body.querySelector('[data-a11y-panel-overlay="reading-guide"]')).toBeNull();
     cleanup();
   });
 
   it('readingMask: creates top and bottom overlays', async () => {
     const { sync, cleanup } = await import('$lib/effects/overlays');
     sync(state({ readingMask: true }));
-    expect(document.body.querySelector('[data-cc-a11y-overlay="reading-mask-top"]')).toBeTruthy();
-    expect(document.body.querySelector('[data-cc-a11y-overlay="reading-mask-bottom"]')).toBeTruthy();
+    expect(document.body.querySelector('[data-a11y-panel-overlay="reading-mask-top"]')).toBeTruthy();
+    expect(document.body.querySelector('[data-a11y-panel-overlay="reading-mask-bottom"]')).toBeTruthy();
     cleanup();
   });
 
@@ -60,6 +62,6 @@ describe('overlays.sync', () => {
     const { sync, cleanup } = await import('$lib/effects/overlays');
     sync(state({ readingGuide: true, readingMask: true }));
     cleanup();
-    expect(document.querySelectorAll('[data-cc-a11y-overlay]').length).toBe(0);
+    expect(document.querySelectorAll('[data-a11y-panel-overlay]').length).toBe(0);
   });
 });

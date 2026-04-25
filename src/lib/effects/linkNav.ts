@@ -1,6 +1,6 @@
 import { getConfig } from './config';
 
-const ATTR = 'data-cc-link-nav';
+const ATTR = 'data-a11y-panel-link-nav';
 
 function build(onClose: () => void): void {
   document.querySelector(`[${ATTR}]`)?.remove();

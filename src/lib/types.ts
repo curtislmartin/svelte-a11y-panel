@@ -60,7 +60,7 @@ export const DEFAULT_STATE: PanelState = {
   fontSize: 16, lineHeight: 'Default', letterSpacing: 'Default', textAlign: null, textMagnifier: false,
   darkContrast: false, lightContrast: false, monochrome: false, highContrast: false,
   highSaturation: false, lowSaturation: false,
-  textColor: '#3d4550', titleColor: '#003d26', bgColor: '#FAFCFA',
+  textColor: '#333333', titleColor: '#111111', bgColor: '#ffffff',
   muteSounds: false, hideImages: false, hideEmoji: false,
   readingGuide: false, readingMask: false, stopAnimations: false,
   highlightHover: false, highlightFocus: false, bigDarkCursor: false, bigLightCursor: false,

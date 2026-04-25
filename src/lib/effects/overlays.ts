@@ -1,6 +1,6 @@
 import { getConfig } from './config';
 
-const ATTR = 'data-cc-a11y-overlay';
+const ATTR = 'data-a11y-panel-overlay';
 const EMOJI_RE = /\p{Emoji_Presentation}|\p{Extended_Pictographic}/gu;
 
 function getOrCreate(id: string): HTMLDivElement {
@@ -119,14 +119,14 @@ function doHideEmoji() {
   while ((n = walker.nextNode())) {
     const t = n as Text;
     EMOJI_RE.lastIndex = 0;
-    if (EMOJI_RE.test(t.data) && !t.parentElement?.closest('[data-cc-emoji-wrapper],[data-cc-a11y-overlay]')) {
+    if (EMOJI_RE.test(t.data) && !t.parentElement?.closest('[data-a11y-panel-emoji],[data-a11y-panel-overlay]')) {
       nodes.push(t);
     }
   }
   nodes.forEach(textNode => {
     EMOJI_RE.lastIndex = 0;
     const wrapper = document.createElement('span');
-    wrapper.setAttribute('data-cc-emoji-wrapper', '');
+    wrapper.setAttribute('data-a11y-panel-emoji', '');
     let lastIndex = 0;
     let match: RegExpExecArray | null;
     while ((match = EMOJI_RE.exec(textNode.data)) !== null) {
@@ -146,7 +146,7 @@ function doHideEmoji() {
   });
 }
 function doShowEmoji() {
-  document.querySelectorAll('[data-cc-emoji-wrapper]').forEach(w => {
+  document.querySelectorAll('[data-a11y-panel-emoji]').forEach(w => {
     w.parentNode?.replaceChild(document.createTextNode(w.textContent ?? ''), w);
   });
 }
@@ -175,6 +175,7 @@ export function sync(s: OverlayState): void {
 
 export function cleanup(): void {
   stopReadingGuide(); stopReadingMask(); stopMagnifier(); stopMuteSounds(); doShowEmoji();
+  prev = { readingGuide:false, readingMask:false, textMagnifier:false, muteSounds:false, hideEmoji:false };
 }
 
 // Clean up overlays when module is hot-replaced during development
