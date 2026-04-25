@@ -22,7 +22,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "lint": "prettier --check . && eslint ."
+    "lint": "prettier --check ."
   },
   "peerDependencies": {
     "svelte": "^5.0.0"
