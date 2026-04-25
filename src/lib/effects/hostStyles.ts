@@ -89,7 +89,7 @@ export function buildCSS(s: PanelState): string {
     rules.push(`*:hover { outline: 3px solid ${getConfig().accentColor} !important; outline-offset: 2px !important; }`);
   }
   if (s.highlightFocus) {
-    rules.push(`*:focus { outline: 3px solid ${getConfig().accentColor} !important; outline-offset: 2px !important; box-shadow: 0 0 0 4px rgba(0,61,38,0.2) !important; }`);
+    rules.push(`*:focus { outline: 3px solid ${getConfig().accentColor} !important; outline-offset: 2px !important; box-shadow: 0 0 0 4px ${getConfig().accentColor}33 !important; }`);
   }
 
   if (s.bigDarkCursor) {
