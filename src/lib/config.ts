@@ -15,9 +15,9 @@ export interface A11yPanelConfig {
   statement?: A11yPanelStatementConfig;
 }
 
-export const DEFAULT_CONFIG: Required<Omit<A11yPanelConfig, 'statement'>> & {
-  statement: Required<A11yPanelStatementConfig>;
-} = {
+export const DEFAULT_CONFIG: Readonly<Required<Omit<A11yPanelConfig, 'statement'>> & {
+  statement: Readonly<Required<A11yPanelStatementConfig>>;
+}> = {
   storageKey: 'a11y-panel-state',
   positionKey: 'a11y-panel-pos',
   accentColor: '#2563eb',
