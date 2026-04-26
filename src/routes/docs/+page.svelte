@@ -78,7 +78,7 @@ yarn add svelte-a11y-panel</code></pre>
 <!-- Init CLI -->
 <section id="init-cli" class="doc-section">
   <h2>Init CLI</h2>
-  <p>For a guided setup, run the init command from the root of your SvelteKit project:</p>
+  <p>If you'd prefer a guided setup, run the init command from the root of your SvelteKit project:</p>
   <pre><code>npx svelte-a11y-panel init</code></pre>
   <p>The CLI will:</p>
   <ul>
@@ -87,7 +87,7 @@ yarn add svelte-a11y-panel</code></pre>
     <li>Modify (or create) <code>src/routes/+layout.svelte</code> with a configured <code>PanelMount</code></li>
     <li>Show you the next step (adding <code>AccessibilityButton</code>)</li>
   </ul>
-  <p>The CLI only runs when you invoke it — it is not a <code>postinstall</code> hook.</p>
+  <p>The CLI only runs when you invoke it — it is not a <code>postinstall</code> hook and never runs automatically.</p>
 </section>
 
 <!-- Theming -->
@@ -199,7 +199,6 @@ yarn add svelte-a11y-panel</code></pre>
   <p>
     When users enable accessibility features, the library actively manipulates the host page.
     This is intentional — it is the only way to apply adjustments across the entire site.
-    All effects are fully reversed when the user turns them off or the panel is unmounted.
   </p>
   <div class="table-wrap">
     <table>
@@ -218,6 +217,7 @@ yarn add svelte-a11y-panel</code></pre>
       </tbody>
     </table>
   </div>
+  <p>All effects are fully reversed when the user turns them off or the panel is unmounted.</p>
 </section>
 
 <style>
