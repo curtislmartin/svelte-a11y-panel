@@ -2,6 +2,7 @@
   "name": "svelte-a11y-panel",
   "version": "0.1.0",
   "description": "Accessible, configurable accessibility panel component for Svelte 5",
+  "license": "MIT",
   "type": "module",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
