@@ -156,6 +156,30 @@ Pass a `customStatement` snippet to `PanelMount` to replace the default statemen
 
 When `customStatement` is provided, the default statement (org name, conformance status, limitations, etc.) is replaced entirely by your content. The back button and statement header are still rendered.
 
+## Content Security Policy (CSP)
+
+If your site uses a strict CSP, you will need to allow the following:
+
+| Feature | CSP directive required |
+|---|---|
+| Host-page style injection | `style-src 'unsafe-inline'` (or a nonce) |
+| OpenDyslexic font (if using dyslexia mode) | `font-src cdn.jsdelivr.net` |
+| Self-hosted font | `font-src 'self'` (set `dyslexiaFontUrl` to your own URL) |
+
+**Recommendation:** If your CSP does not allow `'unsafe-inline'` styles, host the font yourself via `dyslexiaFontUrl` and be aware that the host-page CSS injection feature will be blocked by the browser. The panel UI itself will still work — only the host-page style overrides (font changes, contrast filters, cursor overrides, etc.) will be silent no-ops.
+
+The dynamic import of the panel component requires `script-src` to permit the bundle's origin (typically `'self'`).
+
+## Privacy and permissions
+
+**Voice navigation** uses the browser's `SpeechRecognition` API, which requires **microphone permission**. The browser will prompt the user the first time they enable voice navigation. Speech is processed entirely in the browser — no audio data is sent to any server by this library.
+
+**Text-to-speech** reads aloud the text content of any element the user clicks on the host page. On pages containing sensitive information (account data, medical records), users should be aware that reading aloud may expose content to bystanders.
+
+**localStorage** stores the user's accessibility preferences (toggle states, font size, colours) in the browser. No personally identifiable information is stored.
+
+**CDN font:** When the OpenDyslexic font is loaded, a request is made to `cdn.jsdelivr.net`. To avoid this, provide your own font URL via `dyslexiaFontUrl`.
+
 ## License
 
 MIT — see [LICENSE](./LICENSE)

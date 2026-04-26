@@ -102,5 +102,6 @@ function build(onClose: () => void): void {
 export function open(onClose: () => void): void { build(onClose); }
 
 export function close(): void {
-  document.querySelector(`[${ATTR}]`)?.remove();
+  const el = document.querySelector<HTMLDialogElement>(`[${ATTR}]`);
+  if (el) { el.close(); el.remove(); }
 }

@@ -146,9 +146,14 @@ function doHideEmoji() {
   });
 }
 function doShowEmoji() {
+  const parents = new Set<Node>();
   document.querySelectorAll('[data-a11y-panel-emoji]').forEach(w => {
-    w.parentNode?.replaceChild(document.createTextNode(w.textContent ?? ''), w);
+    if (w.parentNode) {
+      w.parentNode.replaceChild(document.createTextNode(w.textContent ?? ''), w);
+      parents.add(w.parentNode);
+    }
   });
+  parents.forEach(p => (p as Element).normalize?.());
 }
 
 // ── Public sync ───────────────────────────────────────────────

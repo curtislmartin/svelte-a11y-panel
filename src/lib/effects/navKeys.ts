@@ -11,7 +11,7 @@ export function start(): void {
   hIdx = -1; bIdx = -1; fIdx = -1;
   handler = (e: KeyboardEvent) => {
     const active = document.activeElement;
-    if (active && ['INPUT','TEXTAREA','SELECT'].includes(active.tagName)) return;
+    if (active && (['INPUT','TEXTAREA','SELECT'].includes(active.tagName) || (active as HTMLElement).isContentEditable)) return;
 
     switch (e.key.toUpperCase()) {
       case 'H': {

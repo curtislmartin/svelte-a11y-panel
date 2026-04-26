@@ -34,7 +34,11 @@ const LIGHT_CURSOR = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 export function buildCSS(s: PanelState): string {
   const rules: string[] = [];
 
-  const accent = safeColor(getConfig().accentColor, DEFAULT_CONFIG.accentColor);
+  const rawAccent = getConfig().accentColor;
+  const accent = safeColor(rawAccent, DEFAULT_CONFIG.accentColor);
+  if (accent !== rawAccent) {
+    console.warn(`[svelte-a11y-panel] accentColor "${rawAccent}" is not a valid CSS color value and has been ignored. Use hex (#rrggbb), rgb(), rgba(), or hsl() format.`);
+  }
 
   if (s.contentScaling !== 100) {
     const scaling = Math.min(200, Math.max(50, Number(s.contentScaling) || 100));
