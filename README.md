@@ -16,6 +16,10 @@ The panel UI renders in a **Shadow DOM** — fully isolated from your site's CSS
 
 > **Note:** The accessibility effects actively reach into your page (injecting CSS, appending overlays, muting audio). That is the point. See [Host page effects](#host-page-effects) below.
 
+## Documentation
+
+Full docs and live demo: **https://svelte-a11y-panel.vercel.app**
+
 ## Requirements
 
 - Svelte **5** (runes)
@@ -54,6 +58,16 @@ Add `PanelMount` to your root layout and place `AccessibilityButton` wherever yo
 ```
 
 `PanelMount` renders nothing visible — it just sets up the panel. The button opens and closes it.
+
+## Setup CLI (optional)
+
+Prefer a guided setup? Run from the root of your SvelteKit project:
+
+```bash
+npx svelte-a11y-panel init
+```
+
+The CLI detects your layout file and adds a configured `PanelMount` with your brand colour, org name, and contact email pre-filled.
 
 ## Configuration
 
