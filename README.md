@@ -138,11 +138,19 @@ All effects are cleaned up when the panel unmounts.
 
 ## Custom accessibility statement
 
-Pass a `customContent` snippet to override the default statement content entirely:
+Pass a `customStatement` snippet to `PanelMount` to replace the default statement content entirely:
 
 ```svelte
-<!-- Not yet exposed via PanelMount — coming in a future release -->
+<PanelMount config={myConfig}>
+  {#snippet customStatement()}
+    <h2>Our Accessibility Statement</h2>
+    <p>We are committed to making our site accessible to everyone.</p>
+    <p>Contact us at <a href="mailto:access@example.com">access@example.com</a>.</p>
+  {/snippet}
+</PanelMount>
 ```
+
+When `customStatement` is provided, the default statement (org name, conformance status, limitations, etc.) is replaced entirely by your content. The back button and statement header are still rendered.
 
 ## License
 

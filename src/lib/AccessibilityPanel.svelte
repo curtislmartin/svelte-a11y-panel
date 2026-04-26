@@ -10,6 +10,7 @@
   import OrientationSection from './sections/OrientationSection.svelte';
   import CognitiveSection from './sections/CognitiveSection.svelte';
   import StatementView from './StatementView.svelte';
+  import type { Snippet } from 'svelte';
   import { DEFAULT_STATE, type PanelState } from './types';
   import * as hostStyles from './effects/hostStyles';
   import * as overlays from './effects/overlays';
@@ -20,7 +21,7 @@
   import * as linkNav from './effects/linkNav';
   import * as vkb from './effects/virtualKeyboard';
 
-  let { initialState = DEFAULT_STATE }: { initialState?: PanelState } = $props();
+  let { initialState = DEFAULT_STATE, customStatement }: { initialState?: PanelState; customStatement?: Snippet } = $props();
 
   let s = $state<PanelState>({ ...initialState });
   let view = $state<'main' | 'statement'>('main');
@@ -137,7 +138,7 @@
 >
   <PanelHeader {isMobile} onDragStart={isMobile ? undefined : startDrag} />
   {#if view === 'statement'}
-    <StatementView onBack={() => { view = 'main'; }} />
+    <StatementView onBack={() => { view = 'main'; }} {customStatement} />
   {:else}
     <div class="a11y-body" tabindex="-1">
       <ProfilesSection {s} {set} />

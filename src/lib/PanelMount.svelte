@@ -1,12 +1,13 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import type { Snippet } from 'svelte';
   import type { A11yPanelConfig } from './config';
   import { setConfig } from './effects/config';
   import { getOpen } from './panelState.svelte';
   import { load as loadState } from './effects/persist';
   import { apply as applyStyles } from './effects/hostStyles';
 
-  let { config = {} }: { config?: A11yPanelConfig } = $props();
+  let { config = {}, customStatement }: { config?: A11yPanelConfig; customStatement?: Snippet } = $props();
 
   // Apply config before any effects can read it
   setConfig(config);
@@ -43,7 +44,7 @@
 
     const instance = mount(AccessibilityPanel, {
       target: mountPoint,
-      props: { initialState: persistedState },
+      props: { initialState: persistedState, customStatement },
     });
     destroy = () => unmount(instance);
   }
