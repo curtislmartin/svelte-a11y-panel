@@ -15,6 +15,7 @@
   let initialized = false;
   let shadowHost: HTMLDivElement | null = null;
   let destroy: (() => void) | null = null;
+  let themeObserver: MutationObserver | null = null;
   const persistedState = loadState();
 
   async function initPanel() {
@@ -39,6 +40,21 @@
     styleEl.textContent = panelCss;
     shadow.appendChild(styleEl);
 
+    // Override accent colour from config
+    const accentStyleEl = document.createElement('style');
+    accentStyleEl.textContent = `.a11y-panel { --a11y-primary: ${getConfig().accentColor}; }`;
+    shadow.appendChild(accentStyleEl);
+
+    // Sync host-page dark mode toggle into shadow host so :host([data-theme]) selectors work
+    function syncTheme() {
+      const t = document.documentElement.getAttribute('data-theme');
+      if (t) shadowHost!.setAttribute('data-theme', t);
+      else shadowHost!.removeAttribute('data-theme');
+    }
+    syncTheme();
+    themeObserver = new MutationObserver(syncTheme);
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
     const mountPoint = document.createElement('div');
     shadow.appendChild(mountPoint);
 
@@ -60,6 +76,7 @@
     return () => {
       destroy?.();
       shadowHost?.remove();
+      themeObserver?.disconnect();
     };
   });
 </script>
