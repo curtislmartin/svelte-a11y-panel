@@ -14,10 +14,6 @@
   ];
 </script>
 
-<svelte:head>
-  <title>Docs — svelte-a11y-panel</title>
-</svelte:head>
-
 <div class="docs-shell">
   <aside class="sidebar" aria-label="Documentation navigation">
     <div class="sidebar-inner">
