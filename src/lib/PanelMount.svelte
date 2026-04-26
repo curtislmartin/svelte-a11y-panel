@@ -40,9 +40,10 @@
     styleEl.textContent = panelCss;
     shadow.appendChild(styleEl);
 
-    // Override accent colour from config
+    // Override accent colour and font from config
+    const cfg = getConfig();
     const accentStyleEl = document.createElement('style');
-    accentStyleEl.textContent = `.a11y-panel { --a11y-primary: ${getConfig().accentColor}; }`;
+    accentStyleEl.textContent = `.a11y-panel { --a11y-primary: ${cfg.accentColor}; --a11y-font-ui: ${cfg.uiFontFamily}; --a11y-font-title: ${cfg.uiFontFamily}; }`;
     shadow.appendChild(accentStyleEl);
 
     // Sync host-page dark mode toggle into shadow host so :host([data-theme]) selectors work

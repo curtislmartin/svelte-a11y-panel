@@ -18,7 +18,7 @@ yarn add svelte-a11y-panel</code></pre>
 <!-- Quick start -->
 <section id="quick-start" class="doc-section">
   <h2>Quick start</h2>
-  <p>Add <code>PanelMount</code> to your root layout and place <code>AccessibilityButton</code> wherever you want the trigger button to appear:</p>
+  <p>Add <code>PanelMount</code> and <code>AccessibilityButton</code> to your root layout:</p>
   <pre><code>&lt;!-- src/routes/+layout.svelte --&gt;
 &lt;script&gt;
   import &#123; PanelMount, AccessibilityButton &#125; from 'svelte-a11y-panel';
@@ -34,11 +34,25 @@ yarn add svelte-a11y-panel</code></pre>
   &#125;
 &#125;&#125; /&gt;
 
-&lt;AccessibilityButton /&gt;
+&lt;AccessibilityButton accentColor="#2563eb" /&gt;
 
 &#123;@render children()&#125;</code></pre>
-  <p><code>PanelMount</code> renders nothing visible — it sets up the panel in a Shadow DOM appended to <code>document.body</code>. <code>AccessibilityButton</code> is a minimal unstyled button that opens and closes the panel.</p>
+  <p><code>PanelMount</code> renders nothing visible — it sets up the panel in a Shadow DOM appended to <code>document.body</code>. <code>AccessibilityButton</code> is a fixed-position floating button (bottom-right) that opens and closes the panel.</p>
   <p>No CSS imports needed. The panel manages all its own styles.</p>
+
+  <h3>AccessibilityButton props</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>accentColor</code></td><td><code>string</code></td><td><code>'#2563eb'</code></td><td>Background colour of the button. Should match <code>PanelMount</code>'s <code>accentColor</code>.</td></tr>
+        <tr><td><code>label</code></td><td><code>string</code></td><td><code>'Accessibility options'</code></td><td>Accessible label (<code>aria-label</code>) for screen readers.</td></tr>
+        <tr><td><code>class</code></td><td><code>string</code></td><td><code>''</code></td><td>Additional CSS class(es) to apply to the button element.</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <!-- Configuration -->
@@ -54,8 +68,8 @@ yarn add svelte-a11y-panel</code></pre>
         <tr><th>Option</th><th>Type</th><th>Default</th><th>Description</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>accentColor</code></td><td><code>string</code></td><td><code>'#2563eb'</code></td><td>Hex colour for overlays, highlights, and focus rings</td></tr>
-        <tr><td><code>uiFontFamily</code></td><td><code>string</code></td><td><code>'system-ui, sans-serif'</code></td><td>Font for overlays (link navigator, virtual keyboard)</td></tr>
+        <tr><td><code>accentColor</code></td><td><code>string</code></td><td><code>'#2563eb'</code></td><td>Hex colour for buttons, toggles, focus rings, and host-page overlays</td></tr>
+        <tr><td><code>uiFontFamily</code></td><td><code>string</code></td><td><code>'system-ui, sans-serif'</code></td><td>Font for the panel UI and all overlays (link navigator, virtual keyboard)</td></tr>
         <tr><td><code>dyslexiaFontUrl</code></td><td><code>string</code></td><td>jsDelivr CDN</td><td>WOFF2 URL for OpenDyslexic font. Override to self-host.</td></tr>
         <tr><td><code>storageKey</code></td><td><code>string</code></td><td><code>'a11y-panel-state'</code></td><td><code>localStorage</code> key for persisted state</td></tr>
         <tr><td><code>positionKey</code></td><td><code>string</code></td><td><code>'a11y-panel-pos'</code></td><td><code>sessionStorage</code> key for panel position</td></tr>
@@ -71,7 +85,7 @@ yarn add svelte-a11y-panel</code></pre>
   <h3>Security note</h3>
   <p>
     <code>accentColor</code> and <code>dyslexiaFontUrl</code> are interpolated into a CSS stylesheet
-    injected into the host page. Do not set these from untrusted user input. Treat config as a build-time constant.
+    injected into the Shadow DOM. Do not set these from untrusted user input. Treat config as a build-time constant.
   </p>
 </section>
 
@@ -94,17 +108,20 @@ yarn add svelte-a11y-panel</code></pre>
 <section id="theming" class="doc-section">
   <h2>Theming</h2>
   <p>
-    The panel renders inside a Shadow DOM, so your page's CSS cannot reach it.
-    Override the panel's fonts via CSS custom properties on <code>:root</code>:
+    The panel renders inside a Shadow DOM, so your page's global CSS cannot reach it.
+    Theming is done entirely through config:
   </p>
-  <pre><code>/* In your global CSS */
-:root &#123;
-  --a11y-font-ui:    'Your Body Font', sans-serif;
-  --a11y-font-title: 'Your Heading Font', sans-serif;
-&#125;</code></pre>
+  <ul>
+    <li><strong>Accent colour</strong> (buttons, toggles, focus rings, overlays) — set <code>accentColor</code> in config.</li>
+    <li><strong>Font</strong> (panel UI and all overlays) — set <code>uiFontFamily</code> in config.</li>
+  </ul>
+  <pre><code>&lt;PanelMount config=&#123;&#123;
+  accentColor: '#7c3aed',
+  uiFontFamily: "'Inter', system-ui, sans-serif",
+&#125;&#125; /&gt;</code></pre>
   <p>
-    The panel's accent colour (buttons, toggles, focus rings) is set via
-    <code>accentColor</code> in the config — not via CSS custom properties.
+    Colours and fonts set via CSS on the host page (including custom properties on <code>:root</code>) cannot
+    reach inside the Shadow DOM. Use config instead.
   </p>
 </section>
 
@@ -133,20 +150,24 @@ yarn add svelte-a11y-panel</code></pre>
 <section id="custom-trigger" class="doc-section">
   <h2>Custom trigger button</h2>
   <p>
-    <code>AccessibilityButton</code> is intentionally minimal. Build your own trigger using the state functions directly:
+    <code>AccessibilityButton</code> is intentionally simple. Build your own trigger using the state functions directly:
   </p>
   <pre><code>&lt;script&gt;
   import &#123; openPanel, closePanel, getOpen &#125; from 'svelte-a11y-panel';
+  let buttonEl = $state(null);
 &lt;/script&gt;
 
 &lt;button
-  onclick=&#123;() =&gt; getOpen() ? closePanel() : openPanel()&#125;
+  bind:this=&#123;buttonEl&#125;
+  onclick=&#123;() =&gt; getOpen() ? closePanel() : openPanel(buttonEl)&#125;
   aria-expanded=&#123;getOpen()&#125;
   aria-controls="a11y-panel"
+  aria-label="Accessibility options"
 &gt;
   Accessibility settings
 &lt;/button&gt;</code></pre>
   <p>
+    <code>openPanel(element)</code> takes your trigger element so the panel can return focus to it when closed.
     <code>getOpen()</code> is a reactive getter backed by Svelte 5 <code>$state</code> — it re-runs any template that reads it.
   </p>
 </section>
@@ -218,6 +239,22 @@ yarn add svelte-a11y-panel</code></pre>
     </table>
   </div>
   <p>All effects are fully reversed when the user turns them off or the panel is unmounted.</p>
+</section>
+
+<!-- Browser support -->
+<section id="browser-support" class="doc-section">
+  <h2>Browser support</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>Support</th></tr></thead>
+      <tbody>
+        <tr><td>Panel UI</td><td>All modern browsers</td></tr>
+        <tr><td>Text-to-speech</td><td>All modern browsers</td></tr>
+        <tr><td>Voice navigation</td><td>Chrome / Edge only (Web Speech Recognition API)</td></tr>
+        <tr><td>Virtual keyboard</td><td>All modern browsers</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <style>

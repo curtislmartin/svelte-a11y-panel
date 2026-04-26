@@ -11,6 +11,7 @@
     { label: 'Custom trigger', href: '#custom-trigger' },
     { label: 'CSP & privacy', href: '#csp' },
     { label: 'Host page effects', href: '#host-effects' },
+    { label: 'Browser support', href: '#browser-support' },
   ];
 </script>
 
