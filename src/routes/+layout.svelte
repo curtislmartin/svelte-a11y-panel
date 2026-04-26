@@ -1,8 +1,29 @@
 <script lang="ts">
   import '../app.css';
-  import { PanelMount } from '$lib';
+  import { PanelMount, AccessibilityButton } from '$lib';
+  import { onMount } from 'svelte';
 
   let { children } = $props();
+
+  let dark = $state(false);
+
+  onMount(() => {
+    const saved = localStorage.getItem('docs-theme');
+    if (saved) {
+      dark = saved === 'dark';
+      document.documentElement.setAttribute('data-theme', saved);
+    } else {
+      dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // No data-theme set — CSS @media handles it automatically
+    }
+  });
+
+  function toggleDark() {
+    dark = !dark;
+    const theme = dark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('docs-theme', theme);
+  }
 </script>
 
 <PanelMount config={{
@@ -15,21 +36,42 @@
   }
 }} />
 
+<AccessibilityButton accentColor="#2563eb" />
+
 <header class="site-header">
   <div class="header-inner">
     <a href="/" class="logo">
       <span class="logo-icon" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="5" r="2"/>
-          <path d="m6 20 6-6 6 6"/>
-          <path d="m6 14 4-2-4-2v4"/>
-          <path d="m18 14-4-2 4-2v4"/>
+          <circle cx="12" cy="5" r="1"/>
+          <path d="m9 20 3-6 3 6"/>
+          <path d="m6 8 6 2 6-2"/>
+          <path d="M12 10v4"/>
         </svg>
       </span>
       <span class="logo-text">svelte-a11y-panel</span>
     </a>
     <nav class="header-nav" aria-label="Site navigation">
       <a href="/docs">Docs</a>
+      <button
+        class="theme-toggle"
+        onclick={toggleDark}
+        aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+        title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      >
+        {#if dark}
+          <!-- Sun icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        {:else}
+          <!-- Moon icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        {/if}
+      </button>
       <a
         href="https://github.com/curtislmartin/svelte-a11y-panel"
         target="_blank"
@@ -46,7 +88,7 @@
   .site-header {
     position: sticky;
     top: 0;
-    background: rgba(255,255,255,0.95);
+    background: var(--color-header-bg);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--color-border);
     z-index: 100;
@@ -82,8 +124,21 @@
   .header-nav {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
   }
   .header-nav a { color: var(--color-text); font-size: 0.95rem; }
   .header-nav a:hover { color: var(--color-accent); text-decoration: none; }
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .theme-toggle:hover { background: var(--color-sidebar-bg); }
 </style>

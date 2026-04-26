@@ -30,6 +30,7 @@
   aria-expanded={getOpen()}
   aria-controls="a11y-panel"
 >
+  <!-- PersonStanding — Lucide ISC licence, paths inlined to avoid adding a dependency -->
   <svg
     width="28"
     height="28"
@@ -41,10 +42,10 @@
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <circle cx="12" cy="5" r="2"/>
-    <path d="m6 20 6-6 6 6"/>
-    <path d="m6 14 4-2-4-2v4"/>
-    <path d="m18 14-4-2 4-2v4"/>
+    <circle cx="12" cy="5" r="1"/>
+    <path d="m9 20 3-6 3 6"/>
+    <path d="m6 8 6 2 6-2"/>
+    <path d="M12 10v4"/>
   </svg>
 </button>
 
@@ -72,7 +73,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
   .a11y-trigger-btn:focus-visible {
-    outline: 3px solid currentColor;
+    outline: 3px solid #fff;
     outline-offset: 3px;
   }
 </style>
