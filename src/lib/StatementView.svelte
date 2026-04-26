@@ -5,6 +5,7 @@
   let { onBack, customStatement }: { onBack: () => void; customStatement?: Snippet } = $props();
 
   const cfg = getConfig().statement;
+  const safeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cfg.email ?? '') ? cfg.email : null;
 </script>
 
 <div class="statement-view">
@@ -44,9 +45,9 @@
         </ul>
       {/if}
 
-      {#if cfg.email}
+      {#if safeEmail}
         <h3>Feedback</h3>
-        <p>Contact us at <a href="mailto:{cfg.email}">{cfg.email}</a>.</p>
+        <p>Contact us at <a href="mailto:{safeEmail}">{safeEmail}</a>.</p>
       {/if}
 
       {#if cfg.assessmentDate}

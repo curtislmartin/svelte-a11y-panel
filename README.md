@@ -76,6 +76,10 @@ Pass a config object to `PanelMount`:
 | `statement.limitations` | `string[]` | `[]` | Known limitations to list |
 | `statement.assessmentDate` | `string` | `''` | Date string for the statement |
 
+### Security note
+
+Config values (`accentColor`, `dyslexiaFontUrl`) are interpolated into a CSS stylesheet injected into the host page. Do not set these from untrusted user input or unvalidated CMS fields. The library validates and sanitises all values before use, but defence-in-depth means you should treat config as a build-time constant, not a runtime user setting.
+
 ## Theming the panel UI
 
 The panel renders inside a Shadow DOM. Override these CSS custom properties on `:root` to change its fonts:
