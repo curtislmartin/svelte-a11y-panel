@@ -24,7 +24,7 @@
       await Promise.all([
         import('svelte'),
         import('./AccessibilityPanel.svelte'),
-        import('./panel.css?inline'),
+        import('./panelStyles'),
       ]);
 
     shadowHost = document.createElement('div');
