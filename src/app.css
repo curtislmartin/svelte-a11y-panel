@@ -2,6 +2,9 @@
 
 :root {
   --color-bg: #ffffff;
+  --color-hero-bg: linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%);
+  --color-hero-badge-bg: #e0edff;
+  --color-hero-badge-text: #1e40af;
   --color-text: #111827;
   --color-text-muted: #6b7280;
   --color-heading: #0f172a;
@@ -24,6 +27,9 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --color-bg: #0f172a;
+    --color-hero-bg: #0f172a;
+    --color-hero-badge-bg: #1e3a8a;
+    --color-hero-badge-text: #93c5fd;
     --color-text: #cbd5e1;
     --color-text-muted: #94a3b8;
     --color-heading: #f1f5f9;
@@ -40,6 +46,9 @@
 /* Explicitly set dark (via toggle) */
 [data-theme="dark"] {
   --color-bg: #0f172a;
+  --color-hero-bg: #0f172a;
+  --color-hero-badge-bg: #1e3a8a;
+  --color-hero-badge-text: #93c5fd;
   --color-text: #cbd5e1;
   --color-text-muted: #94a3b8;
   --color-heading: #f1f5f9;

@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import type { Snippet } from 'svelte';
   import type { A11yPanelConfig } from './config';
-  import { setConfig } from './effects/config';
+  import { setConfig, getConfig } from './effects/config';
   import { getOpen } from './panelState.svelte';
   import { load as loadState } from './effects/persist';
   import { apply as applyStyles } from './effects/hostStyles';

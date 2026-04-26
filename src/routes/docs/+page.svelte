@@ -225,6 +225,7 @@ yarn add svelte-a11y-panel</code></pre>
     margin-bottom: 4rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--color-border);
+    scroll-margin-top: 80px;
   }
   .doc-section:last-child { border-bottom: none; }
   h1 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }

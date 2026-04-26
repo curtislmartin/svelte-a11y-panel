@@ -52,7 +52,13 @@
       <span class="logo-text">svelte-a11y-panel</span>
     </a>
     <nav class="header-nav" aria-label="Site navigation">
-      <a href="/docs">Docs</a>
+      <a href="/docs" class="nav-link">Docs</a>
+      <a
+        href="https://github.com/curtislmartin/svelte-a11y-panel"
+        target="_blank"
+        rel="noopener"
+        class="nav-link"
+      >GitHub</a>
       <button
         class="theme-toggle"
         onclick={toggleDark}
@@ -60,24 +66,16 @@
         title={dark ? 'Switch to light mode' : 'Switch to dark mode'}
       >
         {#if dark}
-          <!-- Sun icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
           </svg>
         {:else}
-          <!-- Moon icon -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         {/if}
       </button>
-      <a
-        href="https://github.com/curtislmartin/svelte-a11y-panel"
-        target="_blank"
-        rel="noopener"
-        class="btn btn-ghost"
-      >GitHub</a>
     </nav>
   </div>
 </header>
@@ -124,21 +122,30 @@
   .header-nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.25rem;
   }
-  .header-nav a { color: var(--color-text); font-size: 0.95rem; }
-  .header-nav a:hover { color: var(--color-accent); text-decoration: none; }
+  .nav-link {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: color 0.1s, background 0.1s;
+    text-decoration: none;
+  }
+  .nav-link:hover { color: var(--color-heading); background: var(--color-sidebar-bg); text-decoration: none; }
   .theme-toggle {
     background: none;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
+    border: none;
+    color: var(--color-text-muted);
     cursor: pointer;
-    padding: 0.35rem;
+    padding: 0.4rem 0.5rem;
     border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.15s;
+    transition: color 0.1s, background 0.1s;
+    line-height: 1;
   }
-  .theme-toggle:hover { background: var(--color-sidebar-bg); }
+  .theme-toggle:hover { color: var(--color-heading); background: var(--color-sidebar-bg); }
 </style>

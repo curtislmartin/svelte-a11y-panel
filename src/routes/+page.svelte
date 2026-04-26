@@ -99,7 +99,7 @@
   /* Hero */
   .hero {
     padding: 5rem 1.5rem 4rem;
-    background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%);
+    background: var(--color-hero-bg);
     border-bottom: 1px solid var(--color-border);
   }
   .hero-inner {
@@ -109,8 +109,8 @@
   }
   .hero-badge {
     display: inline-block;
-    background: #e0edff;
-    color: #1e40af;
+    background: var(--color-hero-badge-bg);
+    color: var(--color-hero-badge-text);
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.3rem 0.9rem;
