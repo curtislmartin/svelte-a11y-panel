@@ -82,6 +82,13 @@
 
 {@render children()}
 
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>MIT License · Built by Curtis Martin</span>
+    <a href="https://github.com/curtislmartin/svelte-a11y-panel" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</footer>
+
 <style>
   .site-header {
     position: sticky;
@@ -148,4 +155,20 @@
     line-height: 1;
   }
   .theme-toggle:hover { color: var(--color-heading); background: var(--color-sidebar-bg); }
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+  .footer-inner a { color: var(--color-text-muted); text-decoration: none; }
+  .footer-inner a:hover { color: var(--color-accent); }
 </style>

@@ -85,12 +85,6 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <span>MIT License · Built by <a href="https://github.com/curtislmartin" target="_blank" rel="noopener">Curtis Martin</a></span>
-      <a href="https://github.com/curtislmartin/svelte-a11y-panel" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </footer>
 </main>
 
 <style>
@@ -208,20 +202,4 @@
     margin-top: 2rem;
   }
 
-  /* Footer */
-  .site-footer {
-    padding: 1.5rem;
-    border-top: 1px solid var(--color-border);
-  }
-  .footer-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
 </style>

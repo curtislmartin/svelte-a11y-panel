@@ -30,13 +30,6 @@
   </main>
 </div>
 
-<footer class="docs-footer">
-  <div class="docs-footer-inner">
-    <span>svelte-a11y-panel · MIT licence</span>
-    <a href="https://github.com/curtislmartin/svelte-a11y-panel" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</footer>
-
 <style>
   .docs-shell {
     display: flex;
@@ -79,20 +72,4 @@
     .docs-shell { flex-direction: column; }
     .sidebar { position: static; width: 100%; padding: 1.5rem 0 0; }
   }
-  .docs-footer {
-    border-top: 1px solid var(--color-border);
-    margin-top: 2rem;
-  }
-  .docs-footer-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-  }
-  .docs-footer-inner a { color: var(--color-text-muted); text-decoration: none; }
-  .docs-footer-inner a:hover { color: var(--color-accent); }
 </style>
