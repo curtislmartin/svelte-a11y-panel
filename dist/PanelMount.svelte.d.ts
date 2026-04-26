@@ -1,6 +1,8 @@
+import type { Snippet } from 'svelte';
 import type { A11yPanelConfig } from './config';
 type $$ComponentProps = {
     config?: A11yPanelConfig;
+    customStatement?: Snippet;
 };
 declare const PanelMount: import("svelte").Component<$$ComponentProps, {}, "">;
 type PanelMount = ReturnType<typeof PanelMount>;

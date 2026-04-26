@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte';
   import { getConfig } from './effects/config';
 
-  let { onBack, customContent }: { onBack: () => void; customContent?: Snippet } = $props();
+  let { onBack, customStatement }: { onBack: () => void; customStatement?: Snippet } = $props();
 
   const cfg = getConfig().statement;
 </script>
@@ -19,8 +19,8 @@
   </div>
 
   <div class="statement-body">
-    {#if customContent}
-      {@render customContent()}
+    {#if customStatement}
+      {@render customStatement()}
     {:else}
       {#if cfg.orgName}<p class="statement-org">{cfg.orgName}</p>{/if}
 
