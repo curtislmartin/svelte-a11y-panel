@@ -4,9 +4,11 @@
   let {
     label = 'Accessibility options',
     class: className = '',
+    accentColor = '#2563eb',
   }: {
     label?: string;
     class?: string;
+    accentColor?: string;
   } = $props();
 
   let buttonEl = $state<HTMLButtonElement | null>(null);
@@ -16,6 +18,7 @@
   bind:this={buttonEl}
   class={`a11y-trigger-btn ${className}`}
   type="button"
+  style="background: {accentColor};"
   onclick={() => {
     if (getOpen()) {
       closePanel();
@@ -28,8 +31,8 @@
   aria-controls="a11y-panel"
 >
   <svg
-    width="24"
-    height="24"
+    width="28"
+    height="28"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -38,25 +41,38 @@
     stroke-linejoin="round"
     aria-hidden="true"
   >
-    <circle cx="12" cy="5" r="1.5"/>
-    <path d="M9 9l-2 7h10l-2-7"/>
-    <path d="M7 16l1 5M17 16l-1 5"/>
-    <path d="M9 9h6"/>
+    <circle cx="12" cy="5" r="2"/>
+    <path d="m6 20 6-6 6 6"/>
+    <path d="m6 14 4-2-4-2v4"/>
+    <path d="m18 14-4-2 4-2v4"/>
   </svg>
-  <slot>Accessibility</slot>
 </button>
 
 <style>
   .a11y-trigger-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
     border: none;
-    background: none;
-    padding: 8px;
-    border-radius: 4px;
-    font: inherit;
-    color: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    z-index: 9998;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    padding: 0;
+  }
+  .a11y-trigger-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  .a11y-trigger-btn:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
   }
 </style>

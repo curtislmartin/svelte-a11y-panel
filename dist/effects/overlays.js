@@ -157,9 +157,14 @@ function doHideEmoji() {
     });
 }
 function doShowEmoji() {
+    const parents = new Set();
     document.querySelectorAll('[data-a11y-panel-emoji]').forEach(w => {
-        w.parentNode?.replaceChild(document.createTextNode(w.textContent ?? ''), w);
+        if (w.parentNode) {
+            w.parentNode.replaceChild(document.createTextNode(w.textContent ?? ''), w);
+            parents.add(w.parentNode);
+        }
     });
+    parents.forEach(p => p.normalize?.());
 }
 let prev = {
     readingGuide: false, readingMask: false, textMagnifier: false, muteSounds: false, hideEmoji: false,

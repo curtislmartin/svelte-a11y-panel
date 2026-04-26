@@ -3,6 +3,7 @@ export function isSupported() {
         !!(window.SpeechRecognition || window.webkitSpeechRecognition);
 }
 let recognition = null;
+let destroyed = false;
 const COMMANDS = [
     { pattern: /scroll\s+down/i, action: () => window.scrollBy({ top: 300, behavior: 'smooth' }) },
     { pattern: /scroll\s+up/i, action: () => window.scrollBy({ top: -300, behavior: 'smooth' }) },
@@ -15,6 +16,7 @@ const COMMANDS = [
 export function start(onTranscript) {
     if (!isSupported() || recognition)
         return;
+    destroyed = false;
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     recognition = new SR();
     recognition.continuous = true;
@@ -36,12 +38,13 @@ export function start(onTranscript) {
         }
     };
     recognition.onend = () => {
-        if (recognition)
+        if (!destroyed && recognition)
             recognition.start();
     };
     recognition.start();
 }
 export function stop() {
+    destroyed = true;
     if (recognition) {
         recognition.onend = null;
         recognition.stop();

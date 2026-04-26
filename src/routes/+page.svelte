@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { AccessibilityButton } from '$lib';
-
   const FEATURES = [
     { icon: '🛡️', title: 'Shadow DOM isolated', desc: "Panel CSS is fully isolated — it cannot affect your site's styles." },
     { icon: '⚡', title: 'Zero runtime deps', desc: 'The published package includes only its own code. Nothing extra installed.' },
@@ -37,8 +35,7 @@
         >View on GitHub</a>
       </div>
       <div class="hero-demo">
-        <p class="demo-label">Try it live — this site runs it:</p>
-        <AccessibilityButton label="Open accessibility panel" />
+        <p class="demo-label">Try it live — tap the button floating in the bottom right ↘</p>
       </div>
     </div>
   </section>

@@ -85,5 +85,9 @@ function build(onClose) {
 }
 export function open(onClose) { build(onClose); }
 export function close() {
-    document.querySelector(`[${ATTR}]`)?.remove();
+    const el = document.querySelector(`[${ATTR}]`);
+    if (el) {
+        el.close();
+        el.remove();
+    }
 }

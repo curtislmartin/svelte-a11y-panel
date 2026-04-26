@@ -3,7 +3,7 @@ export const DEFAULT_CONFIG = {
     positionKey: 'a11y-panel-pos',
     accentColor: '#2563eb',
     uiFontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
-    dyslexiaFontUrl: 'https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/compiled/OpenDyslexic-Regular.woff2',
+    dyslexiaFontUrl: 'https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@v0.93.72/compiled/OpenDyslexic-Regular.woff2',
     statement: {
         orgName: '',
         email: '',

@@ -18,7 +18,14 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="/" class="logo">
-      <span class="logo-icon" aria-hidden="true">♿</span>
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="5" r="2"/>
+          <path d="m6 20 6-6 6 6"/>
+          <path d="m6 14 4-2-4-2v4"/>
+          <path d="m18 14-4-2 4-2v4"/>
+        </svg>
+      </span>
       <span class="logo-text">svelte-a11y-panel</span>
     </a>
     <nav class="header-nav" aria-label="Site navigation">
@@ -62,7 +69,16 @@
     color: var(--color-heading);
     text-decoration: none;
   }
-  .logo-icon { font-size: 1.3rem; }
+  .logo-icon {
+    width: 2rem;
+    height: 2rem;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
   .header-nav {
     display: flex;
     align-items: center;

@@ -12,7 +12,7 @@ export function start() {
     fIdx = -1;
     handler = (e) => {
         const active = document.activeElement;
-        if (active && ['INPUT', 'TEXTAREA', 'SELECT'].includes(active.tagName))
+        if (active && (['INPUT', 'TEXTAREA', 'SELECT'].includes(active.tagName) || active.isContentEditable))
             return;
         switch (e.key.toUpperCase()) {
             case 'H': {
