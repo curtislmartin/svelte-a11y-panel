@@ -904,13 +904,16 @@ function alreadyInstalled(cwd) {
 }
 
 // src/init/codegen.ts
+function esc(s) {
+  return s.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+}
 function buildPanelMount(cfg) {
   return `<PanelMount config={{
   accentColor: '${cfg.accentColor}',
   statement: {
-    orgName: '${cfg.orgName}',
-    email: '${cfg.email}',
-    assessmentDate: '${cfg.assessmentDate}',
+    orgName: '${esc(cfg.orgName)}',
+    email: '${esc(cfg.email)}',
+    assessmentDate: '${esc(cfg.assessmentDate)}',
   }
 }} />`;
 }

@@ -6,13 +6,17 @@ export interface InitConfig {
   assessmentDate: string;
 }
 
+function esc(s: string): string {
+  return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
 function buildPanelMount(cfg: InitConfig): string {
   return `<PanelMount config={{
   accentColor: '${cfg.accentColor}',
   statement: {
-    orgName: '${cfg.orgName}',
-    email: '${cfg.email}',
-    assessmentDate: '${cfg.assessmentDate}',
+    orgName: '${esc(cfg.orgName)}',
+    email: '${esc(cfg.email)}',
+    assessmentDate: '${esc(cfg.assessmentDate)}',
   }
 }} />`;
 }
