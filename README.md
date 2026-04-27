@@ -20,7 +20,7 @@ The panel UI renders in a **Shadow DOM** — fully isolated from your site's CSS
 
 ## Documentation
 
-Full docs and live demo: **https://svelte-a11y-panel.vercel.app**
+Full docs and live demo: **https://a11y.clmartin.dev**
 
 ## Requirements
 

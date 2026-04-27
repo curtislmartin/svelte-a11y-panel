@@ -1,5 +1,4 @@
-// Auto-generated — do not edit. Source: panel.css
-const css: string = `/* ── Reset ── */
+const panelCss = `/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ── Host element ── */
@@ -56,31 +55,33 @@ const css: string = `/* ── Reset ── */
 /* ── Dark mode — system preference ── */
 @media (prefers-color-scheme: dark) {
   :host(:not([data-theme="light"])) .a11y-panel {
-    --bg:         #1e293b;
-    --body-text:  #e2e8f0;
-    --sub-text:   #94a3b8;
-    --border:     #334155;
-    --active-row: #172554;
-    --sage-light: #1e293b;
-    --sage-mid:   #475569;
-    --sage:       #3b82f6;
-    --pill-off:   #475569;
-    --row-bg:     #0f172a;
+    --bg:           #1e293b;
+    --body-text:    #e2e8f0;
+    --sub-text:     #94a3b8;
+    --border:       #334155;
+    --active-row:   #172554;
+    --sage-light:   #1e293b;
+    --sage-mid:     #475569;
+    --sage:         #3b82f6;
+    --pill-off:     #475569;
+    --row-bg:       #0f172a;
+    --a11y-primary: #60a5fa;
   }
 }
 
 /* ── Dark mode — explicit toggle ── */
 :host([data-theme="dark"]) .a11y-panel {
-  --bg:         #1e293b;
-  --body-text:  #e2e8f0;
-  --sub-text:   #94a3b8;
-  --border:     #334155;
-  --active-row: #172554;
-  --sage-light: #1e293b;
-  --sage-mid:   #475569;
-  --sage:       #3b82f6;
-  --pill-off:   #475569;
-  --row-bg:     #0f172a;
+  --bg:           #1e293b;
+  --body-text:    #e2e8f0;
+  --sub-text:     #94a3b8;
+  --border:       #334155;
+  --active-row:   #172554;
+  --sage-light:   #1e293b;
+  --sage-mid:     #475569;
+  --sage:         #3b82f6;
+  --pill-off:     #475569;
+  --row-bg:       #0f172a;
+  --a11y-primary: #60a5fa;
 }
 
 /* ── Mobile bottom sheet ── */
@@ -754,4 +755,4 @@ const css: string = `/* ── Reset ── */
 .statement-body li { margin-bottom: 4px; }
 .statement-body a { color: var(--a11y-primary); text-decoration: underline; }
 `;
-export default css;
+export default panelCss;
