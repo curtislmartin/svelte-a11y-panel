@@ -2,6 +2,8 @@
 
 A configurable, open-source accessibility panel for Svelte 5 apps. Lets users adjust your site for their needs without any server-side setup.
 
+Originally built for Care Culture's public website, then extracted into a standalone package.
+
 ## What it does
 
 Adds an accessibility widget that lets site visitors adjust your site for their needs:
