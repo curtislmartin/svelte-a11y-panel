@@ -2,11 +2,19 @@
   "name": "svelte-a11y-panel",
   "version": "0.1.0",
   "description": "Accessible, configurable accessibility panel component for Svelte 5",
-  "keywords": ["svelte", "svelte5", "accessibility", "a11y", "panel", "wcag", "sveltekit"],
+  "keywords": [
+    "svelte",
+    "svelte5",
+    "accessibility",
+    "a11y",
+    "panel",
+    "wcag",
+    "sveltekit"
+  ],
   "homepage": "https://a11y.clmartin.dev",
   "repository": {
     "type": "git",
-    "url": "https://github.com/curtislmartin/svelte-a11y-panel.git"
+    "url": "git+https://github.com/curtislmartin/svelte-a11y-panel.git"
   },
   "author": "Curtis Martin",
   "license": "MIT",
@@ -20,7 +28,9 @@
       "default": "./dist/index.js"
     }
   },
-  "bin": "./bin/init.js",
+  "bin": {
+    "svelte-a11y-panel": "bin/init.js"
+  },
   "files": [
     "dist",
     "bin"
