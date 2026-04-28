@@ -3,6 +3,7 @@
   import Toggle from '../controls/Toggle.svelte';
   import ColorPicker from '../controls/ColorPicker.svelte';
   import type { PanelState } from '../types';
+  import { DEFAULT_STATE } from '../types';
 
   let { s, set }: { s: PanelState; set: (k: keyof PanelState, v: unknown) => void } = $props();
 
@@ -15,7 +16,7 @@
   let activeCount = $derived([
     s.darkContrast, s.lightContrast, s.monochrome, s.highContrast,
     s.highSaturation, s.lowSaturation,
-    s.textColor !== '#3d4550', s.titleColor !== '#003d26', s.bgColor !== '#FAFCFA',
+    s.textColor !== DEFAULT_STATE.textColor, s.titleColor !== DEFAULT_STATE.titleColor, s.bgColor !== DEFAULT_STATE.bgColor,
   ].filter(Boolean).length);
 </script>
 

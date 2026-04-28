@@ -1,5 +1,4 @@
-// Auto-generated — do not edit. Source: panel.css
-const css = `/* ── Reset ── */
+const panelCss = `/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ── Host element ── */
@@ -67,6 +66,8 @@ const css = `/* ── Reset ── */
     --pill-off:   #475569;
     --row-bg:     #0f172a;
   }
+  :host(:not([data-theme="light"])) .accordion__icon,
+  :host(:not([data-theme="light"])) .accordion__title { color: #60a5fa; }
 }
 
 /* ── Dark mode — explicit toggle ── */
@@ -82,6 +83,8 @@ const css = `/* ── Reset ── */
   --pill-off:   #475569;
   --row-bg:     #0f172a;
 }
+:host([data-theme="dark"]) .accordion__icon,
+:host([data-theme="dark"]) .accordion__title { color: #60a5fa; }
 
 /* ── Mobile bottom sheet ── */
 @media (max-width: 767px) {
@@ -754,4 +757,4 @@ const css = `/* ── Reset ── */
 .statement-body li { margin-bottom: 4px; }
 .statement-body a { color: var(--a11y-primary); text-decoration: underline; }
 `;
-export default css;
+export default panelCss;
