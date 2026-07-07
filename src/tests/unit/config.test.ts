@@ -37,3 +37,44 @@ describe('A11yPanelConfig', () => {
     expect(cfg).toMatchObject(DEFAULT_CONFIG);
   });
 });
+
+describe('setConfig sanitization', () => {
+  beforeEach(() => {
+    setConfig({});
+  });
+
+  it('accepts valid accentColor formats', () => {
+    setConfig({ accentColor: '#ff0000' });
+    expect(getConfig().accentColor).toBe('#ff0000');
+    setConfig({ accentColor: 'rgb(10, 20, 30)' });
+    expect(getConfig().accentColor).toBe('rgb(10, 20, 30)');
+    setConfig({ accentColor: 'hsl(200, 50%, 40%)' });
+    expect(getConfig().accentColor).toBe('hsl(200, 50%, 40%)');
+  });
+
+  it('falls back to default accentColor on CSS injection attempt', () => {
+    setConfig({ accentColor: 'red; } .a11y-panel { background: url(https://evil.example/x) }' });
+    expect(getConfig().accentColor).toBe(DEFAULT_CONFIG.accentColor);
+  });
+
+  it('falls back to default accentColor on non-color values', () => {
+    setConfig({ accentColor: 'url(https://evil.example/x)' });
+    expect(getConfig().accentColor).toBe(DEFAULT_CONFIG.accentColor);
+    setConfig({ accentColor: 'expression(alert(1))' });
+    expect(getConfig().accentColor).toBe(DEFAULT_CONFIG.accentColor);
+  });
+
+  it('accepts a normal uiFontFamily stack', () => {
+    setConfig({ uiFontFamily: `'Helvetica Neue', "Segoe UI", system-ui, sans-serif` });
+    expect(getConfig().uiFontFamily).toBe(`'Helvetica Neue', "Segoe UI", system-ui, sans-serif`);
+  });
+
+  it('falls back to default uiFontFamily on CSS injection attempt', () => {
+    setConfig({ uiFontFamily: 'serif; } .a11y-panel { display: none' });
+    expect(getConfig().uiFontFamily).toBe(DEFAULT_CONFIG.uiFontFamily);
+    setConfig({ uiFontFamily: 'url(https://evil.example/x)' });
+    expect(getConfig().uiFontFamily).toBe(DEFAULT_CONFIG.uiFontFamily);
+    setConfig({ uiFontFamily: '@import "https://evil.example/x"' });
+    expect(getConfig().uiFontFamily).toBe(DEFAULT_CONFIG.uiFontFamily);
+  });
+});

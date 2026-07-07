@@ -41,6 +41,7 @@
     "build:cli": "tsup",
     "build:all": "pnpm build:cli && pnpm package",
     "package": "svelte-package && publint",
+    "prepublishOnly": "pnpm build:all",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run",

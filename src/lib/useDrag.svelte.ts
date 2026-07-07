@@ -6,12 +6,27 @@ function clamp(v: number, min: number, max: number) {
   return Math.max(min, Math.min(max, v));
 }
 
+// Keep at least this much of the panel reachable when restoring a saved position
+const EDGE_MARGIN = 60;
+
+function clampToViewport(p: Pos): Pos {
+  return {
+    x: clamp(p.x, 0, Math.max(0, window.innerWidth - EDGE_MARGIN)),
+    y: clamp(p.y, 0, Math.max(0, window.innerHeight - EDGE_MARGIN)),
+  };
+}
+
 function loadPos(): Pos {
   try {
     const saved = sessionStorage.getItem(getConfig().positionKey);
-    if (saved) return JSON.parse(saved) as Pos;
+    if (saved) {
+      const p = JSON.parse(saved) as Partial<Pos>;
+      if (typeof p?.x === 'number' && isFinite(p.x) && typeof p?.y === 'number' && isFinite(p.y)) {
+        return clampToViewport({ x: p.x, y: p.y });
+      }
+    }
   } catch { /* ignore */ }
-  return { x: window.innerWidth - 450, y: 80 };
+  return clampToViewport({ x: window.innerWidth - 450, y: 80 });
 }
 
 function savePos(pos: Pos) {

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { openPanel, closePanel, getOpen } from './panelState.svelte';
+  import { safeColor } from './effects/sanitize';
 
   let {
     label = 'Accessibility options',
@@ -11,6 +12,8 @@
     accentColor?: string;
   } = $props();
 
+  const background = $derived(safeColor(accentColor, '#2563eb'));
+
   let buttonEl = $state<HTMLButtonElement | null>(null);
 </script>
 
@@ -18,7 +21,7 @@
   bind:this={buttonEl}
   class={`a11y-trigger-btn ${className}`}
   type="button"
-  style="background: {accentColor};"
+  style="background: {background};"
   onclick={() => {
     if (getOpen()) {
       closePanel();
