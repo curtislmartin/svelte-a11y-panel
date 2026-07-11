@@ -2,3 +2,5 @@ node_modules/
 .svelte-kit/
 .env
 .worktrees/
+test-results/
+playwright-report/

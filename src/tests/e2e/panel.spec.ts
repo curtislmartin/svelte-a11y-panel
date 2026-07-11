@@ -104,7 +104,7 @@ test('accessibility statement shows configured org name', async ({ page }) => {
     const host = document.querySelector('[data-a11y-panel-host]');
     return host?.shadowRoot?.querySelector('.statement-org')?.textContent;
   });
-  expect(orgName).toBe('Demo App');
+  expect(orgName).toBe('svelte-a11y-panel demo');
 });
 
 test('state persists to localStorage', async ({ page }) => {
