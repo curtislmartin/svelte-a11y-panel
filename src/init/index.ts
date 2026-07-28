@@ -29,7 +29,7 @@ async function main() {
     placeholder: '#2563eb',
     defaultValue: '#2563eb',
     validate: (v) =>
-      /^#[0-9a-fA-F]{3,8}$/.test(v.trim()) ? undefined : 'Enter a valid hex colour e.g. #2563eb',
+      /^#[0-9a-fA-F]{3,8}$/.test((v ?? '').trim()) ? undefined : 'Enter a valid hex colour e.g. #2563eb',
   });
   if (isCancel(accentColor)) { cancel('Setup cancelled.'); process.exit(0); }
 
@@ -91,7 +91,7 @@ async function main() {
     'Next step'
   );
 
-  outro('All done! Visit https://svelte-a11y-panel.vercel.app for full documentation.');
+  outro('All done! Visit https://a11y.clmartin.dev for full documentation.');
 }
 
 main();

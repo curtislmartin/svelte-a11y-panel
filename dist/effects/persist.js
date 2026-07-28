@@ -1,7 +1,7 @@
 import { DEFAULT_STATE } from '../types';
 import { getConfig } from './config';
+import { CSS_COLOR_RE } from './sanitize';
 let saveTimer = null;
-const CSS_COLOR_RE = /^(#[0-9a-fA-F]{3,8}|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*[\d.]+\s*\)|hsl\(\s*\d{1,3}\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%\s*\))$/;
 const LH_ALLOWED = new Set(['Default', 'Medium', 'Large', 'XL']);
 const LS_ALLOWED = new Set(['Default', '+1px', '+2px', '+3px']);
 const TA_ALLOWED = new Set(['left', 'center', 'right', 'justify', null]);

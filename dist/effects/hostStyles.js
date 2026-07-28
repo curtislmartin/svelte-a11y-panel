@@ -1,17 +1,14 @@
 import { DEFAULT_STATE } from '../types';
 import { getConfig } from './config';
 import { DEFAULT_CONFIG } from '../config';
+import { safeColor } from './sanitize';
 const LH_MAP = {
     Default: '1.5', Medium: '1.8', Large: '2.1', XL: '2.5',
 };
 const LS_MAP = {
     Default: 'normal', '+1px': '0.05em', '+2px': '0.1em', '+3px': '0.15em',
 };
-const CSS_COLOR_RE = /^(#[0-9a-fA-F]{3,8}|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|rgba\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*[\d.]+\s*\)|hsl\(\s*\d{1,3}\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%\s*\))$/;
 const TEXT_ALIGN_ALLOWED = new Set(['left', 'center', 'right', 'justify']);
-function safeColor(val, fallback) {
-    return CSS_COLOR_RE.test(val.trim()) ? val.trim() : fallback;
-}
 function safeFontUrl(url) {
     try {
         const u = new URL(url);
@@ -29,11 +26,8 @@ const DARK_CURSOR = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/200
 const LIGHT_CURSOR = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M5 3l19 11-7 2-4 8z' fill='%23fff' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 5 3`;
 export function buildCSS(s) {
     const rules = [];
-    const rawAccent = getConfig().accentColor;
-    const accent = safeColor(rawAccent, DEFAULT_CONFIG.accentColor);
-    if (accent !== rawAccent) {
-        console.warn(`[svelte-a11y-panel] accentColor "${rawAccent}" is not a valid CSS color value and has been ignored. Use hex (#rrggbb), rgb(), rgba(), or hsl() format.`);
-    }
+    // setConfig() already validates accentColor; re-check here as defence in depth
+    const accent = safeColor(getConfig().accentColor, DEFAULT_CONFIG.accentColor);
     if (s.contentScaling !== 100) {
         const scaling = Math.min(200, Math.max(50, Number(s.contentScaling) || 100));
         rules.push(`html { zoom: ${scaling}%; }`);
