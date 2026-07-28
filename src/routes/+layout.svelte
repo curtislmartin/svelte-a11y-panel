@@ -31,12 +31,13 @@
   statement: {
     orgName: 'svelte-a11y-panel demo',
     email: 'curtislmartin2008@gmail.com',
-    conformanceStatus: 'We aim to conform to WCAG 2.1 Level AA.',
     assessmentDate: 'April 2026',
   }
 }} />
 
 <AccessibilityButton accentColor="#2563eb" />
+
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header">
   <div class="header-inner">

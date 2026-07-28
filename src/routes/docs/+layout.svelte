@@ -19,14 +19,14 @@
   <aside class="sidebar" aria-label="Documentation navigation">
     <div class="sidebar-inner">
       <p class="sidebar-heading">Documentation</p>
-      <nav>
+      <nav aria-label="Documentation">
         {#each NAV as item}
           <a href={item.href} class="sidebar-link">{item.label}</a>
         {/each}
       </nav>
     </div>
   </aside>
-  <main class="docs-content" id="main">
+  <main class="docs-content" id="main" tabindex="-1">
     {@render children()}
   </main>
 </div>

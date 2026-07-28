@@ -10,6 +10,8 @@
   --color-heading: #0f172a;
   --color-accent: #2563eb;
   --color-accent-hover: #1d4ed8;
+  --color-button-bg: #2563eb;
+  --color-button-hover: #1d4ed8;
   --color-border: #e5e7eb;
   --color-sidebar-bg: #f8fafc;
   --color-header-bg: rgba(255, 255, 255, 0.95);
@@ -121,13 +123,44 @@ pre code {
   border: none;
 }
 .btn-primary {
-  background: var(--color-accent);
+  background: var(--color-button-bg);
   color: #fff;
 }
-.btn-primary:hover { background: var(--color-accent-hover); text-decoration: none; }
+.btn-primary:hover { background: var(--color-button-hover); text-decoration: none; }
 .btn-ghost {
   background: transparent;
   color: var(--color-text);
   border: 1px solid var(--color-border);
 }
 .btn-ghost:hover { background: var(--color-sidebar-bg); text-decoration: none; }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  background: var(--color-heading);
+  color: var(--color-bg);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,6 +1,11 @@
 <svelte:head>
   <title>Docs — svelte-a11y-panel</title>
-  <meta name="description" content="Full documentation for svelte-a11y-panel." />
+  <meta name="description" content="Full documentation for svelte-a11y-panel: installation, configuration, theming, CSP, and browser support." />
+  <link rel="canonical" href="https://a11y.clmartin.dev/docs" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Docs — svelte-a11y-panel" />
+  <meta property="og:description" content="Full documentation for svelte-a11y-panel: installation, configuration, theming, CSP, and browser support." />
+  <meta property="og:url" content="https://a11y.clmartin.dev/docs" />
 </svelte:head>
 
 <!-- Installation -->
@@ -37,7 +42,7 @@ yarn add svelte-a11y-panel</code></pre>
 &lt;AccessibilityButton accentColor="#2563eb" /&gt;
 
 &#123;@render children()&#125;</code></pre>
-  <p><code>PanelMount</code> renders nothing visible — it sets up the panel in a Shadow DOM appended to <code>document.body</code>. <code>AccessibilityButton</code> is a fixed-position floating button (bottom-right) that opens and closes the panel.</p>
+  <p><code>PanelMount</code> renders nothing visible. It sets up the panel in a Shadow DOM appended to <code>document.body</code>. <code>AccessibilityButton</code> is a fixed-position floating button (bottom-right) that opens and closes the panel.</p>
   <p>No CSS imports needed. The panel manages all its own styles.</p>
 
   <h3>AccessibilityButton props</h3>
@@ -69,13 +74,13 @@ yarn add svelte-a11y-panel</code></pre>
       </thead>
       <tbody>
         <tr><td><code>accentColor</code></td><td><code>string</code></td><td><code>'#2563eb'</code></td><td>Hex colour for buttons, toggles, focus rings, and host-page overlays</td></tr>
-        <tr><td><code>uiFontFamily</code></td><td><code>string</code></td><td><code>'system-ui, sans-serif'</code></td><td>Font for the panel UI and all overlays (link navigator, virtual keyboard)</td></tr>
+        <tr><td><code>uiFontFamily</code></td><td><code>string</code></td><td><code>'system-ui, -apple-system, BlinkMacSystemFont, sans-serif'</code></td><td>Font for the panel UI and all overlays (link navigator, virtual keyboard)</td></tr>
         <tr><td><code>dyslexiaFontUrl</code></td><td><code>string</code></td><td>jsDelivr CDN</td><td>WOFF2 URL for OpenDyslexic font. Override to self-host.</td></tr>
         <tr><td><code>storageKey</code></td><td><code>string</code></td><td><code>'a11y-panel-state'</code></td><td><code>localStorage</code> key for persisted state</td></tr>
         <tr><td><code>positionKey</code></td><td><code>string</code></td><td><code>'a11y-panel-pos'</code></td><td><code>sessionStorage</code> key for panel position</td></tr>
         <tr><td><code>statement.orgName</code></td><td><code>string</code></td><td><code>''</code></td><td>Organisation name in the accessibility statement</td></tr>
         <tr><td><code>statement.email</code></td><td><code>string</code></td><td><code>''</code></td><td>Contact email in the accessibility statement</td></tr>
-        <tr><td><code>statement.conformanceStatus</code></td><td><code>string</code></td><td>WCAG 2.1 AA string</td><td>Conformance statement text</td></tr>
+        <tr><td><code>statement.conformanceStatus</code></td><td><code>string</code></td><td><code>''</code></td><td>Optional conformance statement text</td></tr>
         <tr><td><code>statement.limitations</code></td><td><code>string[]</code></td><td><code>[]</code></td><td>Known accessibility limitations to list</td></tr>
         <tr><td><code>statement.assessmentDate</code></td><td><code>string</code></td><td><code>''</code></td><td>Date the statement was prepared</td></tr>
       </tbody>
@@ -101,7 +106,7 @@ yarn add svelte-a11y-panel</code></pre>
     <li>Modify (or create) <code>src/routes/+layout.svelte</code> with a configured <code>PanelMount</code></li>
     <li>Show you the next step (adding <code>AccessibilityButton</code>)</li>
   </ul>
-  <p>The CLI only runs when you invoke it — it is not a <code>postinstall</code> hook and never runs automatically.</p>
+  <p>The CLI only runs when you invoke it. It is not a <code>postinstall</code> hook and never runs automatically.</p>
 </section>
 
 <!-- Theming -->
@@ -112,8 +117,8 @@ yarn add svelte-a11y-panel</code></pre>
     Theming is done entirely through config:
   </p>
   <ul>
-    <li><strong>Accent colour</strong> (buttons, toggles, focus rings, overlays) — set <code>accentColor</code> in config.</li>
-    <li><strong>Font</strong> (panel UI and all overlays) — set <code>uiFontFamily</code> in config.</li>
+    <li><strong>Accent colour:</strong> set <code>accentColor</code> for buttons, toggles, focus rings, and overlays.</li>
+    <li><strong>Font:</strong> set <code>uiFontFamily</code> for the panel UI and all overlays.</li>
   </ul>
   <pre><code>&lt;PanelMount config=&#123;&#123;
   accentColor: '#7c3aed',
@@ -128,7 +133,7 @@ yarn add svelte-a11y-panel</code></pre>
 <!-- Custom statement -->
 <section id="custom-statement" class="doc-section">
   <h2>Custom accessibility statement</h2>
-  <p>To fully replace the default statement content, pass a <code>customStatement</code> snippet to <code>PanelMount</code>:</p>
+  <p>To replace the default statement content, pass a <code>customStatement</code> snippet to <code>PanelMount</code>:</p>
   <pre><code>&lt;PanelMount config=&#123;myConfig&#125;&gt;
   &#123;#snippet customStatement()&#125;
     &lt;h2&gt;Our Accessibility Statement&lt;/h2&gt;
@@ -168,7 +173,7 @@ yarn add svelte-a11y-panel</code></pre>
 &lt;/button&gt;</code></pre>
   <p>
     <code>openPanel(element)</code> takes your trigger element so the panel can return focus to it when closed.
-    <code>getOpen()</code> is a reactive getter backed by Svelte 5 <code>$state</code> — it re-runs any template that reads it.
+    <code>getOpen()</code> is a reactive getter backed by Svelte 5 <code>$state</code>. It re-runs any template that reads it.
   </p>
 </section>
 
@@ -184,7 +189,7 @@ yarn add svelte-a11y-panel</code></pre>
       <tbody>
         <tr><td>Host-page style injection</td><td><code>style-src 'unsafe-inline'</code> (or a nonce)</td></tr>
         <tr><td>OpenDyslexic font (dyslexia mode)</td><td><code>font-src cdn.jsdelivr.net</code></td></tr>
-        <tr><td>Self-hosted font</td><td><code>font-src 'self'</code> — set <code>dyslexiaFontUrl</code> to your own URL</td></tr>
+        <tr><td>Self-hosted font</td><td><code>font-src 'self'</code>; set <code>dyslexiaFontUrl</code> to your own URL</td></tr>
       </tbody>
     </table>
   </div>
@@ -195,16 +200,17 @@ yarn add svelte-a11y-panel</code></pre>
 
   <h3>Microphone access</h3>
   <p>
-    Voice navigation uses <code>window.SpeechRecognition</code>, which requests
+    Voice navigation uses the Web Speech API (<code>SpeechRecognition</code>), which requests
     <strong>microphone permission</strong> from the user the first time it is enabled.
-    Speech is processed entirely in the browser — no audio is sent to any server.
-    You may want to mention microphone use in your privacy policy.
+    The library itself never records or transmits audio, but the browser's speech engine may:
+    Chrome, for example, can send captured audio to Google's servers for recognition.
+    You should mention microphone use in your privacy policy if you enable this feature.
   </p>
 
   <h3>localStorage</h3>
   <p>
     User accessibility preferences are persisted to <code>localStorage</code>.
-    No personally identifiable information is stored.
+    The panel does not intentionally store names, email addresses, or account identifiers.
   </p>
 
   <h3>CDN font</h3>
@@ -219,7 +225,7 @@ yarn add svelte-a11y-panel</code></pre>
   <h2>Host page effects</h2>
   <p>
     When users enable accessibility features, the library actively manipulates the host page.
-    This is intentional — it is the only way to apply adjustments across the entire site.
+    These changes are how the panel applies adjustments across the site.
   </p>
   <div class="table-wrap">
     <table>
@@ -238,7 +244,7 @@ yarn add svelte-a11y-panel</code></pre>
       </tbody>
     </table>
   </div>
-  <p>All effects are fully reversed when the user turns them off or the panel is unmounted.</p>
+  <p>The panel removes its injected styles, overlays, and event listeners when the relevant setting is turned off or the panel is unmounted.</p>
 </section>
 
 <!-- Browser support -->
@@ -248,10 +254,10 @@ yarn add svelte-a11y-panel</code></pre>
     <table>
       <thead><tr><th>Feature</th><th>Support</th></tr></thead>
       <tbody>
-        <tr><td>Panel UI</td><td>All modern browsers</td></tr>
-        <tr><td>Text-to-speech</td><td>All modern browsers</td></tr>
-        <tr><td>Voice navigation</td><td>Chrome / Edge only (Web Speech Recognition API)</td></tr>
-        <tr><td>Virtual keyboard</td><td>All modern browsers</td></tr>
+        <tr><td>Panel UI</td><td>Current Chrome, Edge, Firefox, and Safari</td></tr>
+        <tr><td>Text-to-speech</td><td>Current Chrome, Edge, Firefox, and Safari</td></tr>
+        <tr><td>Voice navigation</td><td>Chrome, Edge, and Safari (Web Speech API; not Firefox)</td></tr>
+        <tr><td>Virtual keyboard</td><td>Current Chrome, Edge, Firefox, and Safari</td></tr>
       </tbody>
     </table>
   </div>

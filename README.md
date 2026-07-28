@@ -14,7 +14,7 @@ Adds an accessibility widget that lets site visitors adjust your site for their 
 - **Orientation:** reading guide, reading mask, hide images/emoji, stop animations, cursor size, focus/hover highlights
 - **Cognitive:** text-to-speech, voice navigation, keyboard shortcuts, link navigator, virtual keyboard
 
-The panel UI renders in a **Shadow DOM** — fully isolated from your site's CSS.
+The panel UI renders in a **Shadow DOM**, isolating its styles from your site's CSS.
 
 > **Note:** The accessibility effects actively reach into your page (injecting CSS, appending overlays, muting audio). That is the point. See [Host page effects](#host-page-effects) below.
 
@@ -61,7 +61,7 @@ Add `PanelMount` and `AccessibilityButton` to your root layout:
 {@render children()}
 ```
 
-`PanelMount` renders nothing visible — it sets up the panel in a Shadow DOM. `AccessibilityButton` is a fixed-position floating button (bottom-right) that opens and closes the panel.
+`PanelMount` renders nothing visible. It sets up the panel in a Shadow DOM. `AccessibilityButton` is a fixed-position floating button (bottom-right) that opens and closes the panel.
 
 ## Setup CLI (optional)
 
@@ -90,7 +90,7 @@ Pass a config object to `PanelMount`:
 | `positionKey` | `string` | `'a11y-panel-pos'` | `sessionStorage` key for dragged panel position |
 | `statement.orgName` | `string` | `''` | Organisation name in accessibility statement |
 | `statement.email` | `string` | `''` | Contact email in accessibility statement |
-| `statement.conformanceStatus` | `string` | WCAG 2.1 AA string | Conformance statement text |
+| `statement.conformanceStatus` | `string` | `''` | Optional conformance statement text |
 | `statement.limitations` | `string[]` | `[]` | Known limitations to list |
 | `statement.assessmentDate` | `string` | `''` | Date string for the statement |
 
@@ -100,10 +100,10 @@ Config values (`accentColor`, `dyslexiaFontUrl`) are interpolated into a CSS sty
 
 ## Theming the panel
 
-The panel renders inside a Shadow DOM — your page's CSS (including custom properties on `:root`) cannot reach it. Theming is done through config:
+The panel renders inside a Shadow DOM, so your page's CSS (including custom properties on `:root`) cannot reach it. Theming is done through config:
 
-- **Accent colour** (buttons, toggles, focus rings, overlays) — `accentColor`
-- **Font** (panel UI and all overlays) — `uiFontFamily`
+- **Accent colour:** `accentColor` controls buttons, toggles, focus rings, and overlays.
+- **Font:** `uiFontFamily` controls the panel UI and all overlays.
 
 ```svelte
 <PanelMount config={{
@@ -160,16 +160,16 @@ When users enable features, the panel actively modifies your page:
 | Navigation keys | Attaches a `keydown` listener to `document` |
 | State persistence | Saves to `localStorage` under `config.storageKey` |
 
-All effects are fully reversed when the user turns them off or the panel is unmounted.
+The panel removes its injected styles, overlays, and event listeners when the relevant setting is turned off or the panel is unmounted.
 
 ## Browser support
 
 | Feature | Support |
 |---|---|
-| Panel UI | All modern browsers |
-| Text-to-speech | All modern browsers |
-| Voice navigation | Chrome / Edge only (Web Speech Recognition API) |
-| Virtual keyboard | All modern browsers |
+| Panel UI | Current Chrome, Edge, Firefox, and Safari |
+| Text-to-speech | Current Chrome, Edge, Firefox, and Safari |
+| Voice navigation | Chrome, Edge, and Safari (Web Speech API; not Firefox) |
+| Virtual keyboard | Current Chrome, Edge, Firefox, and Safari |
 
 ## Custom accessibility statement
 
@@ -197,15 +197,15 @@ If your site uses a strict CSP, you will need to allow the following:
 | OpenDyslexic font (if using dyslexia mode) | `font-src cdn.jsdelivr.net` |
 | Self-hosted font | `font-src 'self'` (set `dyslexiaFontUrl` to your own URL) |
 
-If `'unsafe-inline'` is blocked, the panel UI still works — only host-page style overrides (font changes, contrast filters, cursor overrides) will be silent no-ops.
+If `'unsafe-inline'` is blocked, the panel UI still works. Host-page style overrides such as font changes, contrast filters, and cursor overrides will be silent no-ops.
 
 ## Privacy and permissions
 
-**Voice navigation** uses the browser's `SpeechRecognition` API, which requires **microphone permission**. The browser will prompt the user the first time they enable voice navigation. Speech is processed entirely in the browser — no audio data is sent to any server.
+**Voice navigation** uses the browser's `SpeechRecognition` API, which requires **microphone permission**. The browser will prompt the user the first time they enable voice navigation. The library does not record or transmit audio itself, but the browser's speech-recognition service may send captured audio to a remote server. Chrome, for example, may use Google's servers for recognition.
 
 **Text-to-speech** reads aloud the text content of any element the user clicks. On pages with sensitive information, users should be aware that reading aloud may expose content to bystanders.
 
-**localStorage** stores the user's accessibility preferences (toggle states, font size, colours). No personally identifiable information is stored.
+**localStorage** stores the user's accessibility preferences (toggle states, font size, colours). The panel does not intentionally store names, email addresses, or account identifiers.
 
 **CDN font:** When dyslexia mode is enabled, a request is made to `cdn.jsdelivr.net`. To avoid this, provide your own font URL via `dyslexiaFontUrl`.
 
