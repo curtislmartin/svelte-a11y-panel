@@ -1,5 +1,5 @@
 // Traps Tab / Shift-Tab focus within the element.
-// Works inside a shadow root — queries within the node, not the full document.
+// Works inside a shadow root: queries within the node, not the full document.
 export function focusTrap(node: HTMLElement) {
   const FOCUSABLE = [
     'a[href]', 'button:not([disabled])', 'input:not([disabled])',

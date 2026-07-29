@@ -6,7 +6,7 @@
 
 /* ── Panel wrapper ── */
 .a11y-panel {
-  /* Primary accent — overridden per-instance by PanelMount config injection */
+  /* Primary accent, overridden per-instance by PanelMount config injection */
   --a11y-primary: #2563eb;
 
   /* Light theme surfaces */
@@ -52,7 +52,7 @@
   transform: none;
 }
 
-/* ── Dark mode — system preference ── */
+/* ── Dark mode: system preference ── */
 @media (prefers-color-scheme: dark) {
   :host(:not([data-theme="light"])) .a11y-panel {
     --bg:         #1e293b;
@@ -70,7 +70,7 @@
   :host(:not([data-theme="light"])) .accordion__title { color: #60a5fa; }
 }
 
-/* ── Dark mode — explicit toggle ── */
+/* ── Dark mode: explicit toggle ── */
 :host([data-theme="dark"]) .a11y-panel {
   --bg:         #1e293b;
   --body-text:  #e2e8f0;

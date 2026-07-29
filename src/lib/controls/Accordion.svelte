@@ -16,7 +16,7 @@
     children: Snippet;
   } = $props();
 
-  // startOpen is a seed value only — read it once without tracking.
+  // startOpen is a seed value only; read it once without tracking.
   let open = $state(untrack(() => startOpen));
 </script>
 

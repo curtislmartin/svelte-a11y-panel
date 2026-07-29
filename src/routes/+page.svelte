@@ -35,11 +35,11 @@
 </script>
 
 <svelte:head>
-  <title>svelte-a11y-panel — Accessibility panel for Svelte 5</title>
+  <title>svelte-a11y-panel · Accessibility panel for Svelte 5</title>
   <meta name="description" content="A configurable, open-source accessibility panel for Svelte 5. Two components in your SvelteKit layout give visitors contrast modes, font overrides, and text-to-speech." />
   <link rel="canonical" href="https://a11y.clmartin.dev/" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="svelte-a11y-panel — Accessibility panel for Svelte 5" />
+  <meta property="og:title" content="svelte-a11y-panel · Accessibility panel for Svelte 5" />
   <meta property="og:description" content="A configurable, open-source accessibility panel for Svelte 5. Two components in your SvelteKit layout give visitors contrast modes, font overrides, and text-to-speech." />
   <meta property="og:url" content="https://a11y.clmartin.dev/" />
 </svelte:head>

@@ -12,7 +12,7 @@ import { injectIntoLayout, createLayout, type InitConfig } from './codegen.js';
 async function main() {
   const cwd = process.cwd();
 
-  intro('svelte-a11y-panel — setup');
+  intro('svelte-a11y-panel setup');
 
   if (!isSvelteKitProject(cwd)) {
     cancel('No svelte.config.js found. Run this from the root of your SvelteKit project.');

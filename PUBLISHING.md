@@ -29,7 +29,7 @@ Prompts for username, password, and email. Opens a browser for 2FA if enabled.
 npm publish --dry-run
 ```
 
-Shows exactly what files will be published (controlled by `"files"` in `package.json` — currently `["dist", "bin"]`). Confirm nothing sensitive is included.
+Shows exactly what files will be published (controlled by `"files"` in `package.json`, currently `["dist", "bin"]`). Confirm nothing sensitive is included.
 
 ### 4. Publish
 

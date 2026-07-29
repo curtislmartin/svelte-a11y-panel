@@ -58,7 +58,7 @@
     }
   });
 
-  // TTS — restart whenever tts is on and rate/voice changes
+  // TTS: restart whenever tts is on and rate/voice changes
   $effect(() => {
     if (!s.tts) { tts.stopTTS(); return; }
     tts.startTTS({ rate: s.ttsRate, voice: s.ttsVoice });

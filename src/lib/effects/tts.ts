@@ -54,7 +54,7 @@ export function loadVoices(): Promise<SpeechSynthesisVoice[]> {
       },
       { once: true }
     );
-    // Fallback timeout — some browsers fire voiceschanged unreliably
+    // Fallback timeout: some browsers fire voiceschanged unreliably
     setTimeout(() => resolve(window.speechSynthesis.getVoices()), 1000);
   });
 }

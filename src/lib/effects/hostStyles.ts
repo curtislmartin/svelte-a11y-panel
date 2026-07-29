@@ -66,7 +66,7 @@ export function buildCSS(s: PanelState): string {
     rules.push(`a { background: #e8f4ec !important; outline: 2px solid ${accent} !important; }`);
   }
 
-  // Build combined html filter (only one filter rule allowed — CSS can't stack multiple filter: declarations)
+  // Build combined html filter (only one filter rule allowed; CSS can't stack multiple filter: declarations)
   const filters: string[] = [];
   if (s.darkContrast) filters.push('invert(1) hue-rotate(180deg)');
   else if (s.monochrome) filters.push('grayscale(1)');

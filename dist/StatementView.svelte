@@ -25,16 +25,18 @@
     {:else}
       {#if cfg.orgName}<p class="statement-org">{cfg.orgName}</p>{/if}
 
-      <p>We are committed to ensuring digital accessibility for people with disabilities.</p>
+      <p>This website includes tools for adjusting its display, reading, and navigation settings.</p>
 
-      <h3>Conformance status</h3>
-      <p>
-        {cfg.conformanceStatus}
-        See <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1</a>.
-      </p>
+      {#if cfg.conformanceStatus}
+        <h3>Conformance status</h3>
+        <p>
+          {cfg.conformanceStatus}
+          See <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1</a>.
+        </p>
+      {/if}
 
       <h3>Technical specifications</h3>
-      <p>This website relies on HTML, CSS, JavaScript, and WAI-ARIA for conformance.</p>
+      <p>This website uses HTML, CSS, JavaScript, and WAI-ARIA.</p>
 
       {#if cfg.limitations && cfg.limitations.length > 0}
         <h3>Limitations</h3>

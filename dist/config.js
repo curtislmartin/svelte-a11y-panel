@@ -7,7 +7,7 @@ export const DEFAULT_CONFIG = {
     statement: {
         orgName: '',
         email: '',
-        conformanceStatus: 'We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA.',
+        conformanceStatus: '',
         limitations: [],
         assessmentDate: '',
     },

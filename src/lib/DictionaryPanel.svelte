@@ -1,1 +1,1 @@
-<!-- Phase 3: Dictionary panel — implementation deferred -->
+<!-- Phase 3: Dictionary panel (implementation deferred) -->

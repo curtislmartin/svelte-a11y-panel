@@ -2,7 +2,7 @@
 export { default as PanelMount } from './PanelMount.svelte';
 export { default as AccessibilityButton } from './AccessibilityButton.svelte';
 
-// State — for custom trigger buttons
+// State for custom trigger buttons
 export { openPanel, closePanel, getOpen } from './panelState.svelte';
 
 // Types

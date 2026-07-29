@@ -17,14 +17,14 @@ describe('A11yPanelConfig', () => {
     expect(DEFAULT_CONFIG.statement.email).toBe('');
   });
 
-  it('setConfig merges with defaults — partial overrides only change specified keys', () => {
+  it('setConfig merges with defaults: partial overrides only change specified keys', () => {
     setConfig({ accentColor: '#ff0000' });
     const cfg = getConfig();
     expect(cfg.accentColor).toBe('#ff0000');
     expect(cfg.storageKey).toBe(DEFAULT_CONFIG.storageKey);
   });
 
-  it('setConfig merges statement deeply — other statement keys stay as defaults', () => {
+  it('setConfig merges statement deeply: other statement keys stay as defaults', () => {
     setConfig({ statement: { orgName: 'Acme Corp' } });
     const cfg = getConfig();
     expect(cfg.statement.orgName).toBe('Acme Corp');

@@ -1,9 +1,9 @@
 <svelte:head>
-  <title>Docs — svelte-a11y-panel</title>
+  <title>Docs · svelte-a11y-panel</title>
   <meta name="description" content="Full documentation for svelte-a11y-panel: installation, configuration, theming, CSP, and browser support." />
   <link rel="canonical" href="https://a11y.clmartin.dev/docs" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Docs — svelte-a11y-panel" />
+  <meta property="og:title" content="Docs · svelte-a11y-panel" />
   <meta property="og:description" content="Full documentation for svelte-a11y-panel: installation, configuration, theming, CSP, and browser support." />
   <meta property="og:url" content="https://a11y.clmartin.dev/docs" />
 </svelte:head>
@@ -136,10 +136,10 @@ yarn add svelte-a11y-panel</code></pre>
   <p>To replace the default statement content, pass a <code>customStatement</code> snippet to <code>PanelMount</code>:</p>
   <pre><code>&lt;PanelMount config=&#123;myConfig&#125;&gt;
   &#123;#snippet customStatement()&#125;
-    &lt;h2&gt;Our Accessibility Statement&lt;/h2&gt;
-    &lt;p&gt;We are committed to making our site accessible to everyone.&lt;/p&gt;
+    &lt;h2&gt;Accessibility at Example Corp&lt;/h2&gt;
+    &lt;p&gt;This site aims to meet WCAG 2.2 AA. Known gaps are listed on our accessibility page.&lt;/p&gt;
     &lt;p&gt;
-      Contact us at
+      Found a problem? Email
       &lt;a href="mailto:access@example.com"&gt;access@example.com&lt;/a&gt;.
     &lt;/p&gt;
   &#123;/snippet&#125;

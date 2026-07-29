@@ -178,9 +178,9 @@ Pass a `customStatement` snippet to `PanelMount` to replace the default statemen
 ```svelte
 <PanelMount config={myConfig}>
   {#snippet customStatement()}
-    <h2>Our Accessibility Statement</h2>
-    <p>We are committed to making our site accessible to everyone.</p>
-    <p>Contact us at <a href="mailto:access@example.com">access@example.com</a>.</p>
+    <h2>Accessibility at Example Corp</h2>
+    <p>This site aims to meet WCAG 2.2 AA. Known gaps are listed on our accessibility page.</p>
+    <p>Found a problem? Email <a href="mailto:access@example.com">access@example.com</a>.</p>
   {/snippet}
 </PanelMount>
 ```
@@ -209,6 +209,10 @@ If `'unsafe-inline'` is blocked, the panel UI still works. Host-page style overr
 
 **CDN font:** When dyslexia mode is enabled, a request is made to `cdn.jsdelivr.net`. To avoid this, provide your own font URL via `dyslexiaFontUrl`.
 
+## Contributing
+
+Bug reports, feature ideas, and PRs are welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for dev setup and what we look for in contributions.
+
 ## License
 
-MIT — see [LICENSE](./LICENSE)
+MIT. See [LICENSE](./LICENSE).

@@ -14,7 +14,7 @@
       document.documentElement.setAttribute('data-theme', saved);
     } else {
       dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      // No data-theme set — CSS @media handles it automatically
+      // No data-theme set; CSS @media handles it automatically
     }
   });
 

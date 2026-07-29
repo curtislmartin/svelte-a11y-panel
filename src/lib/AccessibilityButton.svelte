@@ -33,7 +33,7 @@
   aria-expanded={getOpen()}
   aria-controls="a11y-panel"
 >
-  <!-- PersonStanding — Lucide ISC licence, paths inlined to avoid adding a dependency -->
+  <!-- PersonStanding icon from Lucide (ISC licence), paths inlined to avoid adding a dependency -->
   <svg
     width="28"
     height="28"
